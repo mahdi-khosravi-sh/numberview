@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NumberView"
 include ':app'
+include ':numberview'
