@@ -1,4 +1,4 @@
-package com.mahdikh.vision.numberview
+package com.mahdikh.numberview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

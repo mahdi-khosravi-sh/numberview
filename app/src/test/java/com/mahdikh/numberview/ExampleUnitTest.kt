@@ -1,4 +1,4 @@
-package com.mahdikh.vision.numberview
+package com.mahdikh.numberview
 
 import org.junit.Test
 
