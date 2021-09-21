@@ -1,11 +1,24 @@
 package com.mahdikh.numberview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.appcompat.app.AppCompatActivity
+import com.mahdikh.vision.numberview.animator.AlphaAnimator
+import com.mahdikh.vision.numberview.animator.DefaultAnimator
+import com.mahdikh.vision.numberview.widget.NumberView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val numberView: NumberView = findViewById(R.id.numberView)
+        numberView.setOnClickListener {
+            numberView.increment()
+        }
+        numberView.setOnLongClickListener {
+            numberView.decrement()
+            true
+        }
+        numberView.animator = DefaultAnimator()
     }
 }
