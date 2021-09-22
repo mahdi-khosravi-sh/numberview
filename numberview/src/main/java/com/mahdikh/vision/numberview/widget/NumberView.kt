@@ -41,6 +41,7 @@ class NumberView : MaterialTextView {
     }
 
     private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
+        gravity = 0
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.NumberView, defStyleAttr, 0)
 
@@ -64,6 +65,10 @@ class NumberView : MaterialTextView {
             }
             a.recycle()
         }
+    }
+
+    override fun setGravity(gravity: Int) {
+        super.setGravity(Gravity.LEFT or Gravity.CENTER_VERTICAL)
     }
 
     fun increment() {
@@ -182,8 +187,8 @@ class NumberView : MaterialTextView {
     }
 
     private fun updateText(number: Int, animate: Boolean) {
-        if (animate){
-            animator?.run{
+        if (animate) {
+            animator?.run {
                 animate(number)
                 return@updateText
             }
