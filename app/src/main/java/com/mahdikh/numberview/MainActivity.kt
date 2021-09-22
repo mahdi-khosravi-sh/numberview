@@ -1,9 +1,7 @@
 package com.mahdikh.numberview
 
 import android.os.Bundle
-import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
-import com.mahdikh.vision.numberview.animator.AlphaAnimator
 import com.mahdikh.vision.numberview.animator.DefaultAnimator
 import com.mahdikh.vision.numberview.widget.NumberView
 
