@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.view.Gravity
 import com.google.android.material.textview.MaterialTextView
 import com.mahdikh.vision.numberview.R
 import com.mahdikh.vision.numberview.animator.Animator
@@ -181,12 +182,14 @@ class NumberView : MaterialTextView {
     }
 
     private fun updateText(number: Int, animate: Boolean) {
-        if (animate) {
-            animator?.animate(number)
-        } else {
-            joinRightParts()
-            setCompleteText()
+        if (animate){
+            animator?.run{
+                animate(number)
+                return@updateText
+            }
         }
+        joinRightParts()
+        setCompleteText()
     }
 
     private fun isPositive(a: Int): Boolean {
@@ -216,9 +219,11 @@ class NumberView : MaterialTextView {
     }
 
     override fun onDraw(canvas: Canvas) {
-        paint.color = currentTextColor
-        paint.drawableState = drawableState
-        animator?.draw(canvas, paint)
+        animator?.let {
+            paint.color = currentTextColor
+            paint.drawableState = drawableState
+            it.draw(canvas, paint)
+        } ?: kotlin.run { super.onDraw(canvas) }
     }
 
     fun joinRightParts() {
