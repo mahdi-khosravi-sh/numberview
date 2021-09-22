@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="NumberView">
+        <attr name="number" format="integer" />
+        <attr name="animator" format="string" />
         <attr name="duration" format="integer" />
         <attr name="interpolator" format="reference" />
-        <attr name="number" format="integer" />
+        <attr name="android:text" />
     </declare-styleable>
 </resources>

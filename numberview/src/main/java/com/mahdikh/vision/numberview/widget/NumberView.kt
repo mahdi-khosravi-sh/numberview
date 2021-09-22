@@ -8,6 +8,7 @@ import android.view.Gravity
 import com.google.android.material.textview.MaterialTextView
 import com.mahdikh.vision.numberview.R
 import com.mahdikh.vision.numberview.animator.Animator
+import com.mahdikh.vision.numberview.util.getInterpolatorById
 import kotlin.math.abs
 
 class NumberView : MaterialTextView {
@@ -45,21 +46,41 @@ class NumberView : MaterialTextView {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.NumberView, defStyleAttr, 0)
 
+            if (a.hasValue(R.styleable.NumberView_animator)) {
+                val className: String? = a.getString(R.styleable.NumberView_animator)
+                className?.let {
+                    try {
+                        val c = Class.forName(className)
+                        animator = c.newInstance() as Animator?
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+
             val count = a.indexCount
             var index: Int
             for (i in 0 until count) {
                 index = a.getIndex(i)
                 when (index) {
-//                    R.styleable.NumberView_duration -> {
-//                        duration = a.getInt(index, 250)
-//                    }
-//                    R.styleable.NumberView_interpolator -> {
-//                        val id = a.getResourceId(index, -1)
-//                        interpolator = InterpolatorCompat.getInterpolatorById(id)
-//                    }
                     R.styleable.NumberView_number -> {
                         val value = a.getInt(index, 0)
                         setNumber(value, false)
+                    }
+                    R.styleable.NumberView_android_text -> {
+                        a.getString(index)?.let {
+                            setNumber(it, false)
+                        }
+                    }
+                    R.styleable.NumberView_duration -> {
+                        val duration = a.getInt(R.styleable.NumberView_duration, 250)
+                        animator?.setDuration(duration.toLong())
+                    }
+                    R.styleable.NumberView_interpolator -> {
+                        val interpolator = getInterpolatorById(
+                            a.getResourceId(R.styleable.NumberView_interpolator, -1)
+                        )
+                        animator?.setInterpolator(interpolator)
                     }
                 }
             }
