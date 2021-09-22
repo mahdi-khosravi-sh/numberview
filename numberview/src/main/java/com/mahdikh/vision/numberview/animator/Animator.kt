@@ -43,6 +43,7 @@ abstract class Animator {
 
     @CallSuper
     open fun animate(newNumber: Int) {
+        isEndHide = false
         valueAnimator.start()
     }
 
