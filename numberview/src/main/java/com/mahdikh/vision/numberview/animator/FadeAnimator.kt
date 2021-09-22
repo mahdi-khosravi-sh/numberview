@@ -3,7 +3,7 @@ package com.mahdikh.vision.numberview.animator
 import android.graphics.Canvas
 import android.text.TextPaint
 
-class AlphaAnimator : Animator() {
+class FadeAnimator : Animator() {
     private var alpha = 255
 
     override fun animate(newNumber: Int) {
