@@ -1,64 +1,44 @@
 package com.mahdikh.vision.numberview.animator
 
-import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.graphics.Canvas
 import android.text.TextPaint
 
 class DefaultAnimator : Animator() {
-    private var rightDigitsAlpha = 255
+    private var alpha = 255
     private var translationY: Float = 0.0F
-    val translationAnimator: ValueAnimator = ValueAnimator()
-    val alphaAnimator: ValueAnimator = ValueAnimator()
+    private val alphaAnimator = ValueAnimator()
 
-    override fun updateText(newNumber: Int) {
-        val value1 = 0
+    override fun setDuration(duration: Long) {
+        super.setDuration(duration)
+        alphaAnimator.duration = duration
+    }
+
+    override fun animate(newNumber: Int) {
         val value2 =
             if (newNumber > numberView.number) {
-                // incremented
-                numberView.getTextHeight()
+                numberView.getTextHeight().toFloat() / 2F
             } else {
-                // decremented
-                -numberView.getTextHeight()
+                -numberView.getTextHeight().toFloat() / 2F
             }
-        translationAnimator.setFloatValues(value1.toFloat(), value2.toFloat())
-        translationAnimator.duration = duration / 2
-        translationAnimator.interpolator = interpolator
-        translationAnimator.addUpdateListener { animation: ValueAnimator ->
-            translationY = animation.animatedValue as Float
-            invalidate()
-        }
-
-        alphaAnimator.setIntValues(255, 0)
-        alphaAnimator.duration = duration / 3
-        alphaAnimator.addUpdateListener { animation: ValueAnimator ->
-            rightDigitsAlpha = animation.animatedValue as Int
-        }
-
-        translationAnimator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
-                numberView.setCompleteText()
-                translationAnimator.removeListener(this)
-                translationAnimator.setFloatValues(-value2.toFloat(), value1.toFloat())
-                alphaAnimator.setIntValues(0, 255)
-                /*
-                 * زمانی که رقم های عدد قدیمی مخفی شدند اکنون باید رقم های عدد جدید نمایان شوند
-                 * */
-                numberView.joinRightParts()
-                alphaAnimator.start()
-                translationAnimator.start()
-            }
-        })
+        setFloatValues(0.0F, value2, -value2, 0.0F)
+        alphaAnimator.setIntValues(255, 0, 0, 0, 255)
         alphaAnimator.start()
-        translationAnimator.start()
+        super.animate(newNumber)
     }
 
     override fun onDrawRightDigits(canvas: Canvas, paint: TextPaint) {
-        paint.alpha = rightDigitsAlpha
+        paint.alpha = alpha
         canvas.save()
         canvas.translate(0.0F, translationY)
         super.onDrawRightDigits(canvas, paint)
         canvas.restore()
         paint.alpha = 255
+    }
+
+    override fun onAnimationUpdate(fraction: Float, animatedValue: Any) {
+        translationY = animatedValue as Float
+        alpha = alphaAnimator.animatedValue as Int
+        super.onAnimationUpdate(fraction, animatedValue)
     }
 }

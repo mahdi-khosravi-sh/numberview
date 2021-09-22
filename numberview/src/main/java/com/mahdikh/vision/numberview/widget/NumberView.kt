@@ -182,7 +182,7 @@ class NumberView : MaterialTextView {
 
     private fun updateText(number: Int, animate: Boolean) {
         if (animate) {
-            animator?.updateText(number)
+            animator?.animate(number)
         } else {
             joinRightParts()
             setCompleteText()
