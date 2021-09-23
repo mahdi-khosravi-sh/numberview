@@ -41,6 +41,10 @@ abstract class Animator {
         valueAnimator.addUpdateListener(updateListener)
     }
 
+    open fun onUpdateNumber(newNumber: Int) {
+
+    }
+
     @CallSuper
     open fun animate(newNumber: Int) {
         isEndHide = false

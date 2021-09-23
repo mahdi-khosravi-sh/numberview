@@ -210,6 +210,7 @@ class NumberView : MaterialTextView {
     private fun updateText(number: Int, animate: Boolean) {
         if (animate) {
             animator?.run {
+                onUpdateNumber(number)
                 animate(number)
                 return@updateText
             }
