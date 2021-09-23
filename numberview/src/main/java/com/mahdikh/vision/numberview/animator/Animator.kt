@@ -79,7 +79,6 @@ abstract class Animator {
 
     open fun onEndHide() {
         numberView.setCompleteText()
-        numberView.joinRightParts()
     }
 
     open fun onEndShow() {

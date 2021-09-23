@@ -21,9 +21,12 @@ class NumberView : MaterialTextView {
     var number = 0
         private set
     var leftDigits = ""
+        private set
     var rightDigits = ""
-    var newRightDigits = ""
+        private set
+    private var newRightDigits = ""
     var leftDigitsWidth = 0.0F
+        private set
 
     constructor(context: Context) : super(context) {
         init(context, null, 0)
@@ -137,11 +140,11 @@ class NumberView : MaterialTextView {
         this.number = number
     }
 
-    private fun setNumber(str: String) {
+    fun setNumber(str: String) {
         setNumber(str, true)
     }
 
-    private fun setNumber(str: String, animate: Boolean) {
+    fun setNumber(str: String, animate: Boolean) {
         val digits = findDigits(str)
         if (digits.isNotEmpty()) {
             setNumber(digits.toInt(), animate)
@@ -215,7 +218,6 @@ class NumberView : MaterialTextView {
                 return@updateText
             }
         }
-        joinRightParts()
         setCompleteText()
     }
 
@@ -225,6 +227,7 @@ class NumberView : MaterialTextView {
 
     fun setCompleteText() {
         super.setText(getCompleteText(), BufferType.NORMAL)
+        rightDigits = newRightDigits
     }
 
     override fun setText(text: CharSequence?, type: BufferType?) {
@@ -251,9 +254,5 @@ class NumberView : MaterialTextView {
             paint.drawableState = drawableState
             it.draw(canvas, paint)
         } ?: kotlin.run { super.onDraw(canvas) }
-    }
-
-    fun joinRightParts() {
-        rightDigits = newRightDigits
     }
 }
