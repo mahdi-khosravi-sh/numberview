@@ -22,7 +22,6 @@ abstract class Animator {
 
     private val listener = object : AnimatorListenerAdapter() {
         override fun onAnimationEnd(animation: Animator?) {
-            isEndHide = false
             onEndShow()
         }
     }
@@ -31,7 +30,6 @@ abstract class Animator {
         val fraction = it.animatedFraction
         if (fraction >= 0.5F && !isEndHide) {
             onEndHide()
-            isEndHide = true
         }
         onAnimationUpdate(fraction, it.animatedValue)
     }
@@ -77,12 +75,15 @@ abstract class Animator {
         numberView.invalidate()
     }
 
+    @CallSuper
     open fun onEndHide() {
+        isEndHide = true
         numberView.setCompleteText()
     }
 
+    @CallSuper
     open fun onEndShow() {
-
+        isEndHide = false
     }
 
     open fun setDuration(duration: Long) {
