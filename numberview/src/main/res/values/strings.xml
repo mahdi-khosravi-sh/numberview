@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="default_animator">com.mahdikh.vision.numberview.animator.DefaultAnimator</string>
+    <string name="slide_animator">com.mahdikh.vision.numberview.animator.SlideAnimator</string>
     <string name="flip_animator">com.mahdikh.vision.numberview.animator.FlipAnimator</string>
     <string name="fade_animator">com.mahdikh.vision.numberview.animator.FadeAnimator</string>
+    <string name="scale_animator">com.mahdikh.vision.numberview.animator.ScaleAnimator</string>
 </resources>
