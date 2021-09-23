@@ -8,7 +8,7 @@ import android.view.Gravity
 
 class SlideAnimator : PivotAnimator {
     private var alpha = 255
-    private var translationY: Float = 0.0F
+    private var translation: Float = 0.0F
     private val alphaAnimator = ValueAnimator()
     var gravity: Int = Gravity.BOTTOM
 
@@ -89,9 +89,9 @@ class SlideAnimator : PivotAnimator {
         paint.alpha = alpha
         canvas.save()
         if (gravity == Gravity.TOP || gravity == Gravity.BOTTOM) {
-            canvas.translate(0.0F, translationY)
+            canvas.translate(0.0F, translation)
         } else {
-            canvas.translate(translationY, 0.0F)
+            canvas.translate(translation, 0.0F)
         }
         super.onDrawRightDigits(canvas, paint)
         canvas.restore()
@@ -99,7 +99,7 @@ class SlideAnimator : PivotAnimator {
     }
 
     override fun onAnimationUpdate(fraction: Float, animatedValue: Any) {
-        translationY = animatedValue as Float
+        translation = animatedValue as Float
         alpha = alphaAnimator.animatedValue as Int
         super.onAnimationUpdate(fraction, animatedValue)
     }
