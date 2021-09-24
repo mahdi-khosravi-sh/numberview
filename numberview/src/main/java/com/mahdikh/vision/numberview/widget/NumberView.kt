@@ -8,6 +8,7 @@ import android.view.Gravity
 import com.google.android.material.textview.MaterialTextView
 import com.mahdikh.vision.numberview.R
 import com.mahdikh.vision.numberview.animator.Animator
+import com.mahdikh.vision.numberview.animator.DefaultAnimator
 import com.mahdikh.vision.numberview.util.getInterpolatorById
 import kotlin.math.abs
 
@@ -59,6 +60,8 @@ class NumberView : MaterialTextView {
                         e.printStackTrace()
                     }
                 }
+            } else {
+                animator = DefaultAnimator()
             }
 
             val count = a.indexCount
