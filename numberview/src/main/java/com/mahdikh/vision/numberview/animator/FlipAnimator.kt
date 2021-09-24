@@ -3,9 +3,6 @@ package com.mahdikh.vision.numberview.animator
 import android.graphics.Canvas
 import android.text.TextPaint
 
-const val AXIS_Y = 0
-const val AXIS_X = 1
-
 class FlipAnimator : PivotAnimator {
     private var scale = 1.0F
     var axis: Int = AXIS_Y
@@ -35,5 +32,10 @@ class FlipAnimator : PivotAnimator {
     override fun onAnimationUpdate(fraction: Float, animatedValue: Any) {
         scale = animatedValue as Float
         super.onAnimationUpdate(fraction, animatedValue)
+    }
+
+    companion object {
+        const val AXIS_Y = 0
+        const val AXIS_X = 1
     }
 }
