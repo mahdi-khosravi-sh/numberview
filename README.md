@@ -3,11 +3,11 @@ Android NumberView Widget
 
 A beautiful widget for displaying numbers with animation
 
-[![](https://jitpack.io/v/mahdidev78/scrolltotop.svg)](https://jitpack.io/#mahdidev78/scrolltotop)
-![GitHub repo size](https://img.shields.io/github/repo-size/mahdidev78/scrolltotop)
-![GitHub language count](https://img.shields.io/github/languages/count/mahdidev78/scrolltotop)
-![GitHub top language](https://img.shields.io/github/languages/top/mahdidev78/scrolltotop)
-![GitHub last commit](https://img.shields.io/github/last-commit/mahdidev78/scrolltotop?color=red)
+[![](https://jitpack.io/v/mahdidev78/numberview.svg)](https://jitpack.io/#mahdidev78/numberview)
+![GitHub repo size](https://img.shields.io/github/repo-size/mahdidev78/numberview)
+![GitHub language count](https://img.shields.io/github/languages/count/mahdidev78/numberview)
+![GitHub top language](https://img.shields.io/github/languages/top/mahdidev78/numberview)
+![GitHub last commit](https://img.shields.io/github/last-commit/mahdidev78/numberview?color=red)
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -52,7 +52,7 @@ app module build.gradle
 
 ```gradle
 dependencies {
-  implementation 'com.github.mahdidev78:scrolltotop:2.1.9'
+  implementation 'com.github.mahdidev78:numberview:TAG'
 }
 ```
     
@@ -74,7 +74,7 @@ Add the dependency
 ```xml
 <dependency>
   <groupId>com.github.mahdidev78</groupId>
-  <artifactId>scrolltotop</artifactId>
+  <artifactId>numberview</artifactId>
   <version>Tag</version>
 </dependency>
 ```
@@ -95,9 +95,9 @@ Add the NumberView to your layout :
   android:layout_height="wrap_content"
   android:textColor="#000000"
   android:textSize="45sp"
-  app:animator="@string/SlideAnimator"
+  app:animator="@string/DefaultAnimator"
   app:duration="300"
-  app:interpolator="@android:interpolator/overshoot"
+  app:interpolator="@android:interpolator/accelerate_decelerate"
   app:number="10" />
 ```
 ### Step 2
@@ -108,16 +108,23 @@ Setup your code :
     Kotlin
     
 ```kotlin
-val scrollToTop:ScrollToTop = findViewById(R.id.scrollToTop)
-scrollToTop.setupWithRecyclerView(recyclerView)    
+val numberView:NumberView = findViewById(R.id.numberView)
+numberView.setOnClickListener {
+  numberView.increment()
+}
 ```
   </li>
   <li>
     Java
     
 ```java
-ScrollToTop scrollToTop = findViewById(R.id.scrollToTop);
-scrollToTop.setupWithRecyclerView(recyclerView);
+NumberView numberView = findViewById(R.id.numberView);
+numberView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        numberView.increment();
+    }
+});
 ```
   </li>
 </ul>
@@ -129,11 +136,10 @@ scrollToTop.setupWithRecyclerView(recyclerView);
   kotlin
 
 ```kotlin
-scrollToTop.animator = ScaleAnimator().apply {
-  duration = 250
-  fromScale = 0.8F
-  maxAlpha = 0.8F
-  interpolator = FastOutSlowInInterpolator()
+numberView.animator = SlideAnimator().apply {
+    setDuration(450)
+    setInterpolator(FastOutSlowInInterpolator())
+    gravity = Gravity.END
 }
 ```
   </li>
@@ -141,28 +147,26 @@ scrollToTop.animator = ScaleAnimator().apply {
   Java
 
 ```java
-ScaleAnimator animator = new ScaleAnimator();    
-animator.setDuration(250);
-animator.setFromScale(0.8F);
-animator.setMaxAlpha(0.8F);
+SlideAnimator animator = new SlideAnimator(Gravity.END);
+animator.setDuration(450);
 animator.setInterpolator(new FastOutSlowInInterpolator());
-scrollToTop.setAnimator(animator);
+numberView.setAnimator(animator);
 ```
   </li>
 </ul>
 
 #### Animators
 
-`DefaultAnimator`, `FadeAnimator`, `ScaleAnimator`, `SlideAnimator`, `FlipAnimator`
+`DefaultAnimator`, `SlideAnimator`, `FadeAnimator`, `ScaleAnimator`, `RotationAnimator` , `FlipAnimator`
 
 ## Attributes
 
 | attribute | Description | Options(examples)|
 | --- | --- | --- |
-| number |  | 20,486, ... |
-| animator |  | FadeAnimator,ScaleAnimator, etc |
-| duration |  | 500, 600, etc |
-| interpolator |  | @android:interpolator/overshoot |
+| number | The desired number to set as text  | 20,486, ... |
+| animator | animator class name | FadeAnimator,ScaleAnimator, etc |
+| duration | animator duration | 500, 600, etc |
+| interpolator | animator interpolator | @android:interpolator/overshoot |
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
@@ -195,19 +199,18 @@ Distributed under the Apache2.0 License. See `LICENSE` for more information.
 
 Mahdi Khosravi - mahdi.khosravi.dev78@gmail.com
 
-Project Link: [https://github.com/mahdidev78/scrolltotop](https://github.com/mahdidev78/scrolltotop)
-
+Project Link: [https://github.com/mahdidev78/numberview](https://github.com/mahdidev78/numberview)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/mahdidev78/ScrollToTop.svg?
-[contributors-url]: https://github.com/mahdidev78/scrolltotop/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/mahdidev78/ScrollToTop.svg?
-[forks-url]: https://github.com/mahdidev78/scrolltotop/network/members
-[stars-shield]: https://img.shields.io/github/stars/mahdidev78/ScrollToTop.svg?
-[stars-url]: https://github.com/mahdidev78/scrolltotop/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mahdidev78/ScrollToTop.svg?
-[issues-url]: https://github.com/mahdidev78/scrolltotop/issues
-[license-shield]: https://img.shields.io/github/license/mahdidev78/ScrollToTop.svg?
-[license-url]: https://github.com/mahdidev78/scrolltotop/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/mahdidev78/NumberView.svg?
+[contributors-url]: https://github.com/mahdidev78/numberview/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/mahdidev78/NumberView.svg?
+[forks-url]: https://github.com/mahdidev78/numberview/network/members
+[stars-shield]: https://img.shields.io/github/stars/mahdidev78/NumberView.svg?
+[stars-url]: https://github.com/mahdidev78/numberview/stargazers
+[issues-shield]: https://img.shields.io/github/issues/mahdidev78/NumberView.svg?
+[issues-url]: https://github.com/mahdidev78/numberview/issues
+[license-shield]: https://img.shields.io/github/license/mahdidev78/NumberView.svg?
+[license-url]: https://github.com/mahdidev78/numberview/blob/master/LICENSE.txt
 [product-screenshot]: images/screenshot.png
