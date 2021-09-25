@@ -6,7 +6,7 @@ plugins {
 
 def LIB_GROUP_ID = 'com.mahdikh.vision'
 def LIB_ARTIFACT_ID = 'numberview'
-def LIB_VERSION = '1.1.4'
+def LIB_VERSION = '1.2.2'
 
 android {
     compileSdk 31
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         minSdk 19
         targetSdk 31
-        versionCode 3
+        versionCode 4
         versionName LIB_VERSION
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
