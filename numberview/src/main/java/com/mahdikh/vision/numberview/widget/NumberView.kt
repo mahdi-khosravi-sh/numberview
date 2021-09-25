@@ -70,8 +70,9 @@ class NumberView : MaterialTextView {
                 index = a.getIndex(i)
                 when (index) {
                     R.styleable.NumberView_number -> {
-                        val value = a.getInt(index, 0)
-                        setNumber(value, false)
+                        setNumber(
+                            a.getInt(index, 0), false
+                        )
                     }
                     R.styleable.NumberView_android_text -> {
                         a.getString(index)?.let {
@@ -79,8 +80,9 @@ class NumberView : MaterialTextView {
                         }
                     }
                     R.styleable.NumberView_duration -> {
-                        val duration = a.getInt(R.styleable.NumberView_duration, 250)
-                        animator?.setDuration(duration.toLong())
+                        animator?.setDuration(
+                            a.getInt(index, 250).toLong()
+                        )
                     }
                     R.styleable.NumberView_interpolator -> {
                         animator?.setInterpolator(
