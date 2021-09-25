@@ -5,11 +5,11 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.animation.AnimationUtils
 import com.google.android.material.textview.MaterialTextView
 import com.mahdikh.vision.numberview.R
 import com.mahdikh.vision.numberview.animator.Animator
 import com.mahdikh.vision.numberview.animator.DefaultAnimator
-import com.mahdikh.vision.numberview.util.getInterpolatorById
 import kotlin.math.abs
 
 class NumberView : MaterialTextView {
@@ -83,10 +83,12 @@ class NumberView : MaterialTextView {
                         animator?.setDuration(duration.toLong())
                     }
                     R.styleable.NumberView_interpolator -> {
-                        val interpolator = getInterpolatorById(
-                            a.getResourceId(R.styleable.NumberView_interpolator, -1)
+                        animator?.setInterpolator(
+                            AnimationUtils.loadInterpolator(
+                                context.applicationContext,
+                                a.getResourceId(index, -1)
+                            )
                         )
-                        animator?.setInterpolator(interpolator)
                     }
                 }
             }
