@@ -1,13 +1,16 @@
 # NumberView
-Android NumberView Widget
 
-A beautiful widget for displaying numbers with animation
+![Peek 2021-09-27 19-44](https://user-images.githubusercontent.com/88603424/134947044-05d3301c-7bd1-4bcf-91aa-47bdd26f4c98.gif)
+
+#
 
 [![](https://jitpack.io/v/mahdidev78/numberview.svg)](https://jitpack.io/#mahdidev78/numberview)
 ![GitHub repo size](https://img.shields.io/github/repo-size/mahdidev78/numberview)
 ![GitHub language count](https://img.shields.io/github/languages/count/mahdidev78/numberview)
 ![GitHub top language](https://img.shields.io/github/languages/top/mahdidev78/numberview)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mahdidev78/numberview?color=red)
+
+A beautiful widget for displaying numbers with animation
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
