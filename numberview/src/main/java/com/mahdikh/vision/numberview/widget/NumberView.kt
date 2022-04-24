@@ -137,11 +137,23 @@ class NumberView : MaterialTextView {
 
     fun setNumber(number: Int, animate: Boolean) {
         if (this.number == number) {
+            if (number == 0) {
+                setZeroText()
+            }
             return
         }
         setStringParts(number)
         updateText(number, animate)
         this.number = number
+    }
+
+    private fun setZeroText() {
+        val n = number.toString()
+        leftDigits = n
+        rightDigits = n
+        val completeText = getCompleteText()
+        paint.getTextBounds(completeText, 0, completeText.length, textBounds)
+        updateText(number, false)
     }
 
     fun setNumber(str: String) {
